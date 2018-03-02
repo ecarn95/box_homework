@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Box</title>
+</head>
+<body>
+ 	<canvas id="canvas" width="800" height="600"></canvas> 
+    <style type="text/css">
+    canvas {
+      border: solid 1px #000;
+    }
+  </style>
+  </style>
+  	<script type="text/javascript">
+  		//create Canvas
+  		var canvas = document.getElementById("canvas");
+    	var context = canvas.getContext("2d");
+
+    	//create Box
+    	var box = {
+      		x: 770,
+      		y: 300,
+      		speed: 20,
+      		size: 20,
+      		color: "red"
+    	}
+
+     	function createBox(){
+      		context.fillStyle = box.color;
+      		context.fillRect(box.x, box.y, box.size, box.size);
+    	}
+
+    	//draw box on screen
+		function playGame(){
+      		context.clearRect(0,0,canvas.width,canvas.height);
+      		createBox();
+    	}
+    	
+    	playGame();
+
+    	//make box move
+    	
+
+
+  	</script>
+</body>
+</html>
