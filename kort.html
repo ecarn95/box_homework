@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kort's project</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="400"></canvas> 
+    	<style type="text/css">
+    		canvas {
+    			padding: 0;
+    			margin: auto;
+    			display: block;
+    			width: 800px;      		
+    			border: solid 1px #000;
+			}
+
+  		</style>
+
+	<script type="text/javascript">
+		//create Canvas
+  		var canvas = document.getElementById("canvas");
+    	var context = canvas.getContext("2d");
+
+		//make 2 boxes
+		var box = {
+      		x: 0,
+      		y: 200,
+      		speed: 10,
+      		size: 20,
+      		color: "purple"
+    	}
+
+      var box2 = {
+          x: 300,
+          y: 200,
+          speed: 10,
+          size: 20,
+          color: "black"
+      }
+
+      function createBox(){
+          context.fillStyle = box.color;
+          context.fillRect(box.x, box.y, box.size, box.size);
+      }
+
+      function createBox2(){
+          context.fillStyle = box2.color;
+          context.fillRect(box2.x, box2.y, box2.size, box2.size);
+      }
+
+      function playGame(){
+          context.clearRect(0,0,canvas.width,canvas.height);
+          moveBox();
+          moveBox2();
+          createBox();
+          createBox2();
+          requestAnimationFrame(playGame);
+      }
+
+      function moveBox() {
+      if (box.x < 0 || box.x > canvas.width - box.size) {box.speed = -box.speed;}
+      box.x += box.speed;
+    }
+
+    function moveBox2() {
+      if (box2.y < 0 || box2.y > canvas.height - box2.size) {box2.speed = -box2.speed;}
+      box2.y += box2.speed;
+    }
+
+
+    playGame();
+
+  </script>
+</body>
+</html>

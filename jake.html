@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Jake</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="400"></canvas> 
+    	<style type="text/css">
+    		canvas {
+    			padding: 0;
+    			margin: auto;
+    			display: block;
+    			width: 800px;      		
+    			border: solid 1px #000;
+			}
+
+  		</style>
+
+  		<script type="text/javascript">
+  			var canvas = document.getElementById("canvas");
+    	    var context = canvas.getContext("2d");
+
+    	    //create box
+    	    var box = {
+      		x: 300,
+      		y: 200,
+      		speed: 5,
+      		size: 0,
+      		color: ' '
+    	}
+
+    	function moveBox() {
+			if (box.x < 0 || box.x > canvas.width - box.size) {box.speed = -box.speed;}
+			box.x += box.speed;
+		}
+
+     	function createBox(){
+      		context.fillStyle = box.color;
+      		context.fillRect(box.x, box.y, box.size, box.size);
+    	}
+
+    	//random size
+    	function randomSize(){
+    		return Math.floor((Math.random() * 100) + 20);
+    	}
+
+    	//set random color
+    	function randomColor() { 
+  			var letters = '0123456789ABCDEF';
+  			var color = '#';
+  		 	for (var i = 0; i < 6; i++) {
+   			 color += letters[Math.floor(Math.random() * 16)];
+  		}
+  		return color;
+		}
+
+		document.addEventListener("keydown", function(event){
+			if (event.keyCode == 32) {
+				box.color = randomColor();
+				box.size = randomSize();
+			}
+		});
+    	
+		function playGame(){
+			context.clearRect(0,0,canvas.width,canvas.height);
+    		createBox();
+    		moveBox();
+    		requestAnimationFrame(playGame);
+		}
+
+    	playGame();
+
+  	</script>
+</body>
+</html>

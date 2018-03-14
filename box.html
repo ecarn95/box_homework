@@ -4,17 +4,16 @@
 	<title>Box</title>
 </head>
 <body>
- 	<canvas id="canvas" width="600" height="400"></canvas> 
+	<script type="text/javascript" src="box.js"></script>
+ 	<canvas id="canvas" width="1000" height="500"></canvas> 
     <style type="text/css">
     	canvas {
     		padding: 0;
     		margin: auto;
-    		display: block;
-    		width: 800px;      		
+    		display: block;       		
     		border: solid 1px #000;
 		}
 
-  </style>
   </style>
   	<script type="text/javascript">
   		//create Canvas
@@ -39,7 +38,9 @@
 		function playGame(){
       		context.clearRect(0,0,canvas.width,canvas.height);
       		moveBox();
+      		drawLines();
       		createBox();
+          check();
       		requestAnimationFrame(playGame);
     	}
     	
@@ -53,9 +54,33 @@
 
 		document.addEventListener("keydown", function(event){
 			if (event.keyCode == 32) {
-				alert("you are " + (canvas.width - (box.x + box.size)) + " pixels away from right edge")
-			}
+        if (side == true){
+          alert("you are " + (canvas.width - (box.x + box.size)) + " pixels away from right edge")
+        }else{
+          if (side == false){
+          alert("you are " + ((box.x)) + " pixels away from left edge")
+        }
+      }
+    }
 			});
+
+		function drawLines(){
+      		context.beginPath();
+      		context.moveTo(500,0);
+      		context.lineTo(500,canvas.height);
+      		context.stroke();
+  	}
+  function check(){
+    if (box.x + box.size >= 300){
+         side = true;
+    }else{
+      if (box.x < 300){
+         side = false;
+      }
+    }
+  }
+
+
 
     		
 </script>
